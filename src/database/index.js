@@ -1,0 +1,9 @@
+const mongoose = require('mongoose');
+
+
+module.exports = () => {
+  mongoose.connect(process.env.MONGO_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  })
+}
