@@ -1,0 +1,53 @@
+<%- include ('./partials/head.ejs') %>
+<%- include ('./partials/header.ejs') %>
+
+  <% if (messagesSuccess.length > 0) { %>
+    <div style="width: 300px; display: flex; justify-content: space-between; z-index: 20; position: absolute; right: 40px; top: 40px;" id="alert" 
+      class="alert alert-success mt-3" role="alert">
+      <p><%=messagesSuccess[0].message%></p>
+      <button type="button" class="btn-close" onclick="closeToast()" aria-label="Close"></button>
+    </div>
+    <% } else if (messagesError.length > 0) { %>
+      <div style="width: 300px; display: flex; justify-content: space-between; z-index: 20; position: absolute; right: 40px; top: 40px;" id="alert" 
+        class="alert alert-danger mt-3" role="alert">
+        <p><%=messagesError[0].message%></p>
+        <button type="button" class="btn-close" onclick="closeToast()" aria-label="Close"></button>
+      </div>
+  <% } %>
+
+  <div class="container">
+    <h1>Olá <%= user.name %> </h1>
+
+    <h2>Atualize seus dados ou delete sua conta</h2>
+    <div class="card p-3 mt-3">
+      <h1>Atualizar informações</h1>
+      <hr>
+      <form action="/update-user" method="POST">
+        <input type="hidden" name="id" value="<%= user._id %>">
+
+        <label for="name">Digite seu nome</label>
+        <input type="text" id="name" class="form-control" name="name" value="<%=user.name%>" placeholder="Dígite uma senha">
+    
+        <label for="email" class="mt-2" >Digite seu email</label>
+        <input type="text" id="email" class="form-control" name="email" value="<%=user.email%>"  placeholder="Dígite seu email">
+    
+        <label for="old_password" class="mt-2" >Digite sua senha atual</label>
+        <input type="password" id="old_password" class="form-control" name="old_password" placeholder="Digite sua senha atual">
+    
+        <label for="password" class="mt-2">Digite uma nova senha</label>
+        <input type="password" id="password" class="form-control" name="password" placeholder="Dígite uma nova senha">
+    
+        <button type="submit" class="btn btn-outline-success mt-2">Atualizar dados</button>
+      </form>
+    </div>
+    <div class="card p-3 mt-3">
+      <form action="/delete-user" method="POST">
+        <input type="hidden" name="id" value="<%= user._id %>">
+        <p>Clique no botão abaixo para excluir a conta</p>
+        <button type="submit" class="btn btn-danger">Deletar Conta</button>
+      </form>
+    </div>
+  </div>
+
+<%- include ('./partials/closeToast.ejs') %>
+<%- include ('./partials/footer.ejs') %> 
