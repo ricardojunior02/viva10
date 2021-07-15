@@ -78,7 +78,7 @@ class UserController {
     }else if(password.length > 0 && old_password.length > 0){
       const comparePassword = await compare(old_password, user.password);
       if(!comparePassword){
-        await request.flash('erro', { message: 'Forneça sua senha atual correta para atualizar'});
+        await request.flash('error', { message: 'Forneça sua senha atual correta para atualizar'});
         return response.redirect(`/usuario/${id}`)
       }
       hashNewPassword = await hash(password, 8);
