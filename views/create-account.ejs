@@ -1,0 +1,40 @@
+<%- include ('./partials/head.ejs') %> 
+<% if (messagesSuccess.length > 0) { %>
+  <div style="width: 300px; display: flex; justify-content: space-between; z-index: 20; position: absolute; right: 40px; top: 40px;" id="alert" 
+    class="alert alert-success mt-3" role="alert">
+    <p><%=messagesSuccess[0].message%></p>
+    <button type="button" class="btn-close" onclick="closeToast()" aria-label="Close"></button>
+  </div>
+  <% } else if (messagesError.length > 0) { %>
+    <div style="width: 300px; display: flex; justify-content: space-between; z-index: 20; position: absolute; right: 40px; top: 40px;" id="alert" 
+      class="alert alert-danger mt-3" role="alert">
+      <p><%=messagesError[0].message%></p>
+      <button type="button" class="btn-close" onclick="closeToast()" aria-label="Close"></button>
+    </div>
+<% } %>
+  <div class="container">
+    <div class="card mt-3">
+      <div class="card-header">
+        <h2>Faça seu cadastro</h2>
+      </div>
+      <div class="card-body">
+        <form action="/create-user" method="POST">
+
+        <label for="name">Dígite seu nome</label>
+        <input type="text" id="name" class="form-control" name="name"  placeholder="Dígite seu nome">
+        
+        <label for="email" class="mt-2">Dígite seu email</label>
+        <input type="text" id="email" class="form-control" name="email"  placeholder="Dígite seu email">
+
+        <label for="password" class="mt-2">Dígite uma senha</label>
+        <input type="password" id="password" class="form-control" name="password" placeholder="Dígite uma senha">
+
+        <button type="submit" class="btn btn-outline-success mt-2">Entrar</button>
+      </form>
+      </div>
+    </div>
+      <a class="nav-link" href="/" >Já tenho uma conta</a>
+  </div>
+<%- include ('./partials/closeToast.ejs') %> 
+<%- include ('./partials/footer.ejs') %> 
+
